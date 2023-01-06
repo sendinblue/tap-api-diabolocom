@@ -1,0 +1,128 @@
+{
+        "type": "object",
+        "properties": {
+        "id": {
+                "type": ["null","integer"]
+        },
+        "name": {
+                "type": ["null","string"]
+        },
+        "firstName": {
+                "type": ["null","string"]
+        },
+        "lastName": {
+                "type": ["null","string"]
+        },
+        "email": {
+                "type": ["null","string"]
+        },
+        "role": {
+                "type": ["null","string"]
+        },
+        "profileId": {
+                "type": ["null","integer"]
+        },
+        "number": {
+                "type": ["null","string"]
+        },
+        "isDisabled": {
+                "type": "boolean"
+        },
+        "locale": {
+                "type": ["null","string"]
+        },
+        "folder": {
+                "type": ["null","string"]
+        },
+        "statusSetId": {
+                "type": ["null","integer"]
+        },
+        "skillChannels": {
+                "type": "array",
+                "items": {
+                "type": "object",
+                "required": [
+                        "channel",
+                        "skills"
+                ],
+                "properties": {
+                        "channel": {
+                        "type": ["null","string"]
+                        },
+                        "skills": {
+                        "type": "array",
+                        "items": {
+                                "type": "object",
+                                "title": "A Schema",
+                                "required": [
+                                "id",
+                                "name",
+                                "disabled",
+                                "level"
+                                ],
+                                "properties": {
+                                "id": {
+                                        "type": ["null","integer"]
+                                },
+                                "name": {
+                                        "type": ["null","string"]
+                                },
+                                "disabled": {
+                                        "type": "boolean"
+                                },
+                                "level": {
+                                        "type": ["null","integer"]
+                                }
+                                }
+                        }
+                        }
+                }
+                }
+        },
+        "missedCallsThreshold": {
+                "type": ["null","integer"]
+        },
+        "isLimitWrapupTime": {
+                "type": "boolean"
+        },
+        "wrapupTimeout": {
+                "type": ["null","integer"]
+        },
+        "isAllowProlongateWrapup": {
+                "type": "boolean"
+        },
+        "wrapupAdditionalTimeout": {
+                "type": ["null","integer"]
+        },
+        "maxEmails": {
+                "type": ["null","integer"]
+        },
+        "maxTransfers": {
+                "type": ["null","integer"]
+        },
+        "buttonForTabActivation": {
+                "type": "boolean"
+        },
+        "tabsManagementMode": {
+                "type": ["null","string"]
+        },
+        "isolationTypes": {
+                "type": ["null","string"]
+        },
+        "lastUpdatedBy": {
+                "type": ["null","string"]
+        },
+        "lastUpdatedAt": {
+                "type": ["null","string"]
+        },
+        "createdBy": {
+                "type": ["null","string"]
+        },
+        "createdAt": {
+                "type": ["null","string"]
+        },
+        "lastLoginAt": {
+                "type": ["null","string"]
+        }
+        }
+}
