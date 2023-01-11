@@ -64,7 +64,7 @@ def sync(config, state, catalog):
 
         singer.write_schema(
             stream_name=stream.tap_stream_id,
-            schema=stream.schema,
+            schema={},
             key_properties=stream.key_properties,
         )
 
@@ -72,7 +72,7 @@ def sync(config, state, catalog):
 
         max_bookmark = None
         if stream.tap_stream_id == "users":
-            for record in diabolocom_client.get_sync_endpoints(stream.tap_stream_id):
+            for record in diabolocom_client.get_sync_endpoints(stream.tap_stream_id, config["api_key"], config["path"]):
                 # write one or more rows to the stream:
                 singer.write_records(stream.tap_stream_id, record)
             if bookmark_column:

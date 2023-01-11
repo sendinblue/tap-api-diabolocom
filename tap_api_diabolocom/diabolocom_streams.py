@@ -29,21 +29,18 @@ class DiabolocomApi(object):
         self.retry = retry
 
 
-    def get_sync_endpoints(self, stream, path, parameters={}):
+    def get_sync_endpoints(self, stream, api_key, path, parameters={}):
         current_retry = 0
-        page=0
+        page=1
         headers = {
-            "accept": "application/json",
-            "authorization": f"Basic {self.api_key}",
+            "Content-Type": "application/json",
+            "Private-Token": f"{api_key}",
         }
-
-        if stream == "users":
-            url = f"https://public-fr6.engage.diabolocom.com/api/v1{path}?page="
-
         next_pages = True
         try:
             while next_pages:
-                url=f"{url}{page}"
+                if stream == "users":
+                    url = f"https://public-fr6.engage.diabolocom.com/api/v1{path}?page={page}"
                 response = requests.get(url, headers=headers, timeout=60)
 
                 if response.status_code != 200:
@@ -59,14 +56,12 @@ class DiabolocomApi(object):
                         )
                 else:
                     records = json.loads(response.content.decode("utf-8"))
-                    if not [records["next"]]:
-                        next_pages = False
-                    if stream == "users":
-                        records = [records["users"]]
-                    for record in records:
+                    page+=1
+                    for record in [records["users"]]:
                         LOGGER.info(f"the record to be sent -  {record}")
                         yield record
-                    page+=1
+                    if not records["next"]: 
+                        next_pages = False
                 
         
         except Exception as e:
